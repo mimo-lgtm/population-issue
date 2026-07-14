@@ -1,563 +1,570 @@
+
+Population issue · HTML
 <!DOCTYPE html>
-
+ 
 <html lang="ja">
-
+ 
 <head>
-
+ 
 <meta charset="UTF-8">
-
+ 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+ 
 <title>人口問題への本格的な取り組み</title>
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
+ 
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+ 
 <style>
-
+ 
 :root{
-
-  --ink:#1b1f1d; --board:#23282a; --board-2:#2c3234;
-
-  --paper:#eef0e4; --paper-2:#e3e6d8;
-
-  --amber:#e8a33d; --amber-deep:#c9821f;
-
-  --teal:#2f7a6b; --teal-deep:#22594e;
-
-  --clay:#c1502f; --violet:#6d5aa8; --violet-deep:#4d3e80;
-
-  --line:#3a4143; --line-light:#d8dcc9;
-
+ 
+  --ink:#20242a; --board:#1b2026; --board-2:#252b32;
+ 
+  --paper:#eceeec; --paper-2:#dfe2e1;
+ 
+  --amber:#b3462c; --amber-deep:#8f3620;
+ 
+  --teal:#3d5a68; --teal-deep:#2b414c;
+ 
+  --clay:#a8843b; --violet:#5b5a72; --violet-deep:#403f56;
+ 
+  --line:#3a4149; --line-light:#cfd3d1;
+ 
 }
-
+body{background-image:
+    repeating-linear-gradient(0deg, rgba(60,70,80,.05) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(60,70,80,.05) 0 1px, transparent 1px 32px);
+}
+h1,h2,h3,h4,.brand{font-family:"Shippori Mincho","Zen Kaku Gothic New",serif;letter-spacing:.02em;}
+ 
 *{margin:0;padding:0;box-sizing:border-box;overflow-wrap:break-word;}
-
+ 
 html{scroll-behavior:smooth;}
-
+ 
 body{font-family:"Zen Kaku Gothic New",sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:16px;}
-
-h1,h2,h3,h4,.brand{font-family:"Klee One","Zen Kaku Gothic New",sans-serif;}
-
+ 
+ 
+ 
 .mono{font-family:"JetBrains Mono",monospace;}
-
+ 
 img{max-width:100%;display:block;border-radius:4px;}
-
+ 
 button{cursor:pointer;font-family:inherit;}
-
  
-
+ 
+ 
 .topbar{position:sticky;top:0;z-index:999;background:var(--board);border-bottom:4px solid var(--amber);
-
+ 
   padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-
+ 
 .brand{color:var(--paper);font-size:17px;font-weight:800;display:flex;align-items:center;gap:8px;line-height:1.3;}
-
+ 
 .brand span.dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(47,122,107,.3);flex-shrink:0;}
-
+ 
 nav{display:flex;gap:8px;flex-wrap:wrap;}
-
+ 
 nav button{border:1.5px solid var(--line);background:var(--board-2);color:var(--paper);padding:9px 16px;border-radius:6px;
-
+ 
   font-weight:700;font-size:13.5px;letter-spacing:.02em;transition:.15s;}
-
+ 
 nav button:hover{border-color:var(--amber);color:var(--amber);}
-
+ 
 nav button.active{background:var(--amber);color:var(--ink);border-color:var(--amber);}
-
  
-
+ 
+ 
 .page{display:none;max-width:1160px;margin:0 auto;padding:36px 20px 80px;animation:fade .25s ease;}
-
+ 
 .page.active{display:block;}
-
+ 
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
  
-
+ 
+ 
 .card{background:var(--paper);border:1.5px solid var(--line-light);border-radius:10px;padding:26px 28px;margin-bottom:22px;box-shadow:0 3px 0 var(--line-light);}
-
+ 
 h1{font-size:28px;font-weight:800;margin-bottom:14px;}
-
+ 
 h2{font-size:19px;font-weight:800;margin-bottom:12px;}
-
+ 
 h3{font-size:15px;font-weight:700;margin:14px 0 8px;color:var(--teal-deep);}
-
+ 
 p{color:#33372f;}
-
  
-
+ 
+ 
 .hero{background:var(--board);border-radius:12px;padding:44px 32px;margin-bottom:26px;position:relative;overflow:hidden;}
-
+ 
 .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1.5px,transparent 1.5px);background-size:22px 22px;}
-
-.sticky{position:relative;z-index:1;display:inline-block;background:var(--amber);color:var(--ink);padding:18px 24px;border-radius:3px;
-
-  transform:rotate(-1.5deg);box-shadow:0 10px 24px rgba(0,0,0,.35);font-size:24px;font-weight:800;line-height:1.5;max-width:620px;}
-
-.sticky::before{content:"";position:absolute;top:-10px;left:36px;width:60px;height:20px;background:rgba(255,255,255,.55);transform:rotate(-4deg);}
-
+ 
+.sticky{position:relative;z-index:1;display:inline-block;background:var(--paper);color:var(--ink);padding:18px 24px 18px 28px;border-radius:2px;border-left:6px solid var(--amber);
+ 
+  transform:none;box-shadow:0 10px 24px rgba(0,0,0,.35);font-size:24px;font-weight:800;line-height:1.5;max-width:620px;}
+ 
+.sticky::before{content:"提言";position:absolute;top:-13px;left:28px;background:var(--amber);color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;padding:2px 10px;letter-spacing:.15em;transform:none;width:auto;height:auto;}
+ 
 .hero-sub{position:relative;z-index:1;color:#cfd6c9;margin-top:20px;max-width:600px;font-size:14px;}
-
+ 
 .hero-tag{position:relative;z-index:1;display:inline-block;margin-top:16px;color:var(--teal);font-family:"JetBrains Mono",monospace;font-size:11.5px;border:1px solid var(--teal);padding:4px 10px;border-radius:999px;letter-spacing:.05em;}
-
  
-
+ 
+ 
 /* ===== MAP & UPDATE BOARDS (home top) ===== */
-
+ 
 .section-lead{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
-
+ 
 .section-lead h2{margin-bottom:0;}
-
+ 
 .section-lead .tag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--teal-deep);border:1px solid var(--teal);padding:2px 9px;border-radius:999px;}
-
+ 
 .map-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
-
+ 
 .map-card, .update-card{border-radius:10px;padding:18px 20px;border:1.5px solid var(--line-light);position:relative;}
-
+ 
 .map-card{background:#fff;}
-
+ 
 .map-card::before{content:"🗺️ 未来提案の原点｜アイデアの地図";display:block;font-size:11.5px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;letter-spacing:.02em;}
-
+ 
 .map-card .cat-name{font-size:14.5px;font-weight:800;margin-bottom:8px;}
-
+ 
 .map-card .body-text{font-size:13px;color:#3d4235;line-height:1.85;}
-
+ 
 .update-card{background:var(--paper-2);}
-
+ 
 .update-card .head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;}
-
+ 
 .update-card .lbl{font-size:11.5px;font-weight:700;color:var(--violet-deep);letter-spacing:.02em;}
-
+ 
 .update-btn{
-
+ 
   border:none;background:var(--violet);color:#fff;font-weight:700;font-size:12px;
-
+ 
   padding:7px 14px;border-radius:6px;box-shadow:0 3px 0 var(--violet-deep);transition:.12s;flex-shrink:0;
-
+ 
 }
-
+ 
 .update-btn:hover{transform:translateY(1px);box-shadow:0 2px 0 var(--violet-deep);}
-
+ 
 .update-btn.close{background:#8b8f7f;box-shadow:0 3px 0 #6d7160;}
-
+ 
 .update-body{display:none;margin-top:10px;font-size:13px;color:#3d3550;line-height:1.85;background:#fff;border-radius:8px;padding:12px 14px;border:1px dashed var(--violet);}
-
+ 
 .update-body.show{display:block;}
-
+ 
 .update-loading{font-size:12px;color:var(--violet-deep);font-family:"JetBrains Mono",monospace;}
-
+ 
 .update-placeholder{font-size:12.5px;color:#8b8f7f;}
-
  
-
+ 
+ 
 .flow3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px;}
-
+ 
 .flow-step{background:var(--paper);border:1.5px dashed var(--line-light);border-radius:8px;padding:18px;text-align:center;}
-
+ 
 .flow-step .num{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--amber-deep);font-size:12px;letter-spacing:.1em;margin-bottom:6px;}
-
+ 
 .flow-step .ic{font-size:26px;margin-bottom:6px;}
-
+ 
 .flow-step h4{font-size:14.5px;font-weight:700;margin-bottom:4px;}
-
+ 
 .flow-step p{font-size:12.5px;color:#5a5f52;}
-
  
-
+ 
+ 
 .feature-list{list-style:none;}
-
+ 
 .feature-list li{padding:9px 0;border-bottom:1px solid var(--line-light);font-size:14.5px;display:flex;gap:8px;}
-
+ 
 .feature-list li b{color:var(--teal-deep);}
-
+ 
 .note-box{background:var(--paper-2);border-left:4px solid var(--clay);border-radius:6px;padding:14px 16px;font-size:13.5px;color:#4a3626;margin-top:16px;}
-
  
-
+ 
+ 
 .big-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:7px;border:none;
-
+ 
   background:var(--teal);color:#fff;font-weight:700;font-size:15px;box-shadow:0 4px 0 var(--teal-deep);transition:.12s;}
-
+ 
 .big-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--teal-deep);}
-
+ 
 .big-btn.amber{background:var(--amber);color:var(--ink);box-shadow:0 4px 0 var(--amber-deep);}
-
+ 
 .big-btn.ghost{background:var(--paper);color:var(--ink);border:1.5px solid var(--line-light);box-shadow:none;}
-
+ 
 .big-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-
  
-
+ 
+ 
 .assist-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-
+ 
 .notepad{background:repeating-linear-gradient(var(--paper) 0 31px, var(--line-light) 31px 32px);border:1.5px solid var(--line-light);border-radius:8px;padding:16px 18px;position:relative;}
-
+ 
 .notepad::before{content:"";position:absolute;left:34px;top:0;bottom:0;width:1.5px;background:var(--clay);opacity:.35;}
-
+ 
 textarea{width:100%;min-height:220px;padding-left:20px;background:transparent;border:none;resize:vertical;font-family:inherit;font-size:15px;line-height:32px;color:var(--ink);}
-
+ 
 textarea:focus{outline:none;}
-
+ 
 .report-slip{background:#fff;border:1.5px solid var(--line-light);border-radius:8px;min-height:220px;padding:20px 20px 18px;position:relative;}
-
+ 
 .report-slip::before{content:"AI 整理票";position:absolute;top:-11px;left:16px;background:var(--ink);color:var(--paper);font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 10px;border-radius:4px;letter-spacing:.05em;}
-
+ 
 .slip-empty{color:#9aa08e;font-size:14px;padding-top:8px;}
-
+ 
 .slip-row{margin-bottom:12px;}
-
+ 
 .slip-label{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--teal-deep);letter-spacing:.05em;margin-bottom:4px;}
-
+ 
 .slip-value{font-size:14px;line-height:1.7;}
-
+ 
 .slip-tag{display:inline-block;background:var(--paper-2);border:1px solid var(--line-light);border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:700;color:var(--teal-deep);margin-right:6px;}
-
+ 
 .persp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
-
+ 
 .persp-box{background:var(--paper-2);border-radius:6px;padding:8px 10px;}
-
+ 
 .persp-box .pl{font-size:10.5px;font-weight:700;color:var(--violet-deep);margin-bottom:2px;}
-
+ 
 .persp-box .pv{font-size:12px;color:#3a3f33;line-height:1.6;}
-
+ 
 .confirm-box{margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line-light);}
-
+ 
 .confirm-box p{font-weight:700;margin-bottom:10px;font-size:14px;}
-
+ 
 .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
-
+ 
 .loading{color:var(--amber-deep);font-size:13.5px;font-family:"JetBrains Mono",monospace;}
-
+ 
 .merge-banner{background:#efe9fb;border-left:4px solid var(--violet);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--violet-deep);margin-top:10px;line-height:1.7;}
-
  
-
+ 
+ 
 .settings-panel{background:var(--paper-2);border:1.5px dashed var(--line-light);border-radius:8px;padding:12px 16px;margin-bottom:18px;}
-
+ 
 .settings-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:13px;font-weight:700;color:var(--teal-deep);}
-
+ 
 .settings-body{display:none;margin-top:10px;}
-
+ 
 .settings-body.open{display:block;}
-
+ 
 .settings-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
-
+ 
 .settings-row input[type=text]{flex:1;min-width:200px;padding:8px 10px;border:1.5px solid var(--line-light);border-radius:6px;font-size:12.5px;font-family:"JetBrains Mono",monospace;}
-
+ 
 .settings-row button{border:none;background:var(--teal);color:#fff;padding:8px 14px;border-radius:6px;font-size:12.5px;font-weight:700;}
-
+ 
 .settings-status{font-size:11.5px;color:#5a5f52;}
-
+ 
 .author-row{margin-bottom:14px;}
-
+ 
 .author-row label{font-size:12.5px;font-weight:700;color:var(--teal-deep);display:block;margin-bottom:4px;}
-
+ 
 .author-row input[type=text]{width:100%;padding:9px 12px;border:1.5px solid var(--line-light);border-radius:6px;font-size:14px;background:#fff;}
-
  
-
+ 
+ 
 .cork-intro{background:var(--board);color:var(--paper);border-radius:10px;padding:22px 26px;margin-bottom:22px;}
-
+ 
 .cork-intro h2{color:#fff;}
-
+ 
 .cork-intro p{color:#c7cdbb;font-size:14px;}
-
+ 
 .cork-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:8px;}
-
+ 
 .pin-card{background:var(--paper);border:1.5px solid var(--line-light);border-radius:8px;padding:16px 10px;text-align:center;cursor:pointer;position:relative;transition:.15s;box-shadow:0 3px 0 var(--line-light);}
-
+ 
 .pin-card:hover{transform:translateY(-3px);}
-
+ 
 .pin-card.open{border-color:var(--amber);box-shadow:0 3px 0 var(--amber);}
-
-.pin-card .tape{position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-2deg);width:42px;height:14px;background:rgba(232,163,61,.55);}
-
+ 
+.pin-card .tape{position:absolute;top:-2px;left:12px;transform:none;width:28px;height:10px;background:var(--amber);}
+ 
 .pin-card .ic{font-size:24px;margin-bottom:6px;}
-
+ 
 .pin-card .lbl{font-size:12.5px;font-weight:700;line-height:1.35;}
-
+ 
 .pin-card .cnt{margin-top:8px;display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;background:var(--teal);color:#fff;border-radius:999px;padding:2px 9px;}
-
+ 
 .cnt.zero{background:#a3a89a;}
-
  
-
+ 
+ 
 .detail-panel{display:none;background:#fff;border:1.5px solid var(--line-light);border-radius:10px;padding:22px 24px;margin-top:16px;}
-
+ 
 .detail-title{font-size:16px;font-weight:800;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--paper-2);}
-
+ 
 .sub-block{margin-bottom:10px;border:1.5px solid var(--line-light);border-radius:8px;overflow:hidden;}
-
+ 
 .sub-head{padding:11px 15px;background:var(--paper-2);display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;font-size:14px;}
-
+ 
 .sub-head:hover{background:var(--paper);}
-
+ 
 .sub-head .dynamic-flag{font-size:10px;background:var(--violet);color:#fff;border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700;}
-
+ 
 .sub-body{display:none;padding:12px 15px;border-top:1px solid var(--line-light);}
-
+ 
 .idea-note{background:var(--paper);border-left:4px solid var(--teal);border-radius:6px;padding:11px 14px;margin-bottom:8px;cursor:pointer;transition:.12s;}
-
+ 
 .idea-note.seed{border-left-color:var(--amber-deep);}
-
+ 
 .idea-note.merged{border-left-color:var(--violet);}
-
+ 
 .idea-note:hover{transform:translateX(2px);box-shadow:0 2px 8px rgba(0,0,0,.08);}
-
+ 
 .idea-note .t{font-size:13.5px;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-
+ 
 .idea-note .badge{font-size:10px;font-family:"JetBrains Mono",monospace;border-radius:999px;padding:1px 8px;font-weight:700;flex-shrink:0;}
-
+ 
 .badge.b-seed{background:var(--amber);color:var(--ink);}
-
+ 
 .badge.b-proposal{background:var(--teal);color:#fff;}
-
+ 
 .badge.b-merged{background:var(--violet);color:#fff;}
-
+ 
 .idea-note .m{font-size:11px;color:#7c8172;font-family:"JetBrains Mono",monospace;margin-top:3px;}
-
+ 
 .idea-full{display:none;margin-top:8px;padding:12px 14px;background:#fff;border:1px solid var(--line-light);border-radius:6px;font-size:13.5px;color:#3a3f33;line-height:1.8;}
-
+ 
 .idea-full .persp-grid{margin-top:10px;}
-
+ 
 .idea-full .mreason{background:#efe9fb;border-left:3px solid var(--violet);border-radius:6px;padding:9px 11px;margin-top:10px;font-size:12.5px;color:var(--violet-deep);}
-
+ 
 .archive-toggle{margin-top:10px;font-size:12px;color:var(--teal-deep);font-weight:700;cursor:pointer;display:inline-block;}
-
+ 
 .archive-list{display:none;margin-top:8px;padding-left:10px;border-left:2px dashed var(--line-light);}
-
+ 
 .archive-item{background:var(--paper-2);border-radius:6px;padding:8px 10px;margin-bottom:6px;font-size:12px;}
-
+ 
 .archive-item .at{font-weight:700;}
-
+ 
 .archive-item .as{color:#5a5f52;margin-top:3px;}
-
+ 
 .empty-note{font-size:13px;color:#9aa08e;padding:6px 2px;}
-
  
-
+ 
+ 
 @media(max-width:900px){
-
+ 
   .assist-layout{grid-template-columns:1fr;}
-
+ 
   .flow3{grid-template-columns:1fr;}
-
+ 
   .cork-grid{grid-template-columns:repeat(3,1fr);}
-
+ 
   .map-row{grid-template-columns:1fr;}
-
+ 
   .persp-grid{grid-template-columns:1fr;}
-
+ 
   .sticky{font-size:19px;}
-
+ 
 }
-
+ 
 @media(max-width:560px){.cork-grid{grid-template-columns:1fr 1fr;}}
-
+ 
 </style>
-
+ 
 </head>
-
+ 
 <body>
-
  
-
+ 
+ 
 <header class="topbar">
-
+ 
   <div class="brand"><span class="dot"></span>🗣️ 芦屋未来会議</div>
-
+ 
   <nav>
-
+ 
     <button class="active" onclick="showPage('home',this)">ホーム</button>
-
+ 
     <button onclick="showPage('assist',this)">声を届ける</button>
-
+ 
     <button onclick="showPage('tree',this)">声のボード</button>
-
+ 
   </nav>
-
+ 
 </header>
-
  
-
+ 
+ 
 <main>
-
  
-
+ 
+ 
 <!-- ================= HOME ================= -->
-
+ 
 <section id="home" class="page active">
-
  
-
+ 
+ 
   <div class="section-lead"><h2>🗺️ 5つのテーマ｜地図とアップデート</h2><span class="tag">BASE VISION × LIVE UPDATE</span></div>
-
+ 
   <p style="margin-bottom:14px;font-size:13.5px;color:#5a5f52;">左側は最初から変わらない「未来提案の原点」、右側はボタンを押すとその時点の市民の声を反映した最新のアップデート案がその場に表示されます（もう一度押すと閉じます）。</p>
-
+ 
   <div id="mapUpdateWrap"></div>
-
  
-
+ 
+ 
   <div class="hero">
-
+ 
     <div class="sticky">人口問題への本格的な取り組み<br>人口増を目指そう！</div>
-
+ 
     <p class="hero-sub">このプラットフォームは、市民のみなさんが、まちへの想いを持ち寄り、未来の芦屋を一緒に共創して育てていくための場です。感じたこと・気づいたことを自由に書き込むと、AIが内容を読み取り、5つのテーマに整理してボードに掲示します。</p>
-
+ 
     <div class="hero-tag">支援者の声 → AI整理 → 政策提案ボード</div>
-
-  </div>
-
  
-
+  </div>
+ 
+ 
+ 
   <div class="card">
-
+ 
     <h2>使い方は3ステップ</h2>
-
+ 
     <div class="flow3">
-
+ 
       <div class="flow-step"><div class="num">STEP 01</div><div class="ic">✍️</div><h4>自由に書く</h4><p>形式は不要。感じたことをそのまま。</p></div>
-
+ 
       <div class="flow-step"><div class="num">STEP 02</div><div class="ic">🤖</div><h4>AIが整理する</h4><p>5つの視点・要約・タイトル・テーマを自動生成。</p></div>
-
+ 
       <div class="flow-step"><div class="num">STEP 03</div><div class="ic">📌</div><h4>ボードに掲示</h4><p>同じテーマの声はリアルタイムに統合されます。</p></div>
-
-    </div>
-
-  </div>
-
  
-
+    </div>
+ 
+  </div>
+ 
+ 
+ 
   <div class="card">
-
+ 
     <h2>できること</h2>
-
+ 
     <ul class="feature-list">
-
+ 
       <li><b>①</b> 思いついたまま自由記述できる（設問なし）</li>
-
+ 
       <li><b>②</b> AIが「核心・変化・成功事例・懸念点・問い」の5視点で分析</li>
-
+ 
       <li><b>③</b> 5つのテーマ×中分類でボードに自動分類（その他が3件たまると新しい中分類が自動生成）</li>
-
+ 
       <li><b>④</b> 似たテーマの提案は既存の統合記事とリアルタイムに統合され、元の記事は履歴として保存されます</li>
-
+ 
     </ul>
-
+ 
     <div class="note-box">ボードの初期投稿の一部は、たたき台としての模擬投稿（新統合）です。実際の声が集まるにつれて統合・更新されていきます。</div>
-
+ 
     <div style="margin-top:18px;"><button class="big-btn amber" onclick="showPage('assist')">🤖 声を届けてみる</button></div>
-
-  </div>
-
-</section>
-
  
-
+  </div>
+ 
+</section>
+ 
+ 
+ 
 <!-- ================= AI ASSISTANT ================= -->
-
+ 
 <section id="assist" class="page">
-
+ 
   <h1>🤖 声を届ける</h1>
-
+ 
   <p style="margin-bottom:18px;color:#5a5f52;">まちについて思っていることを自由に書いてください。AIが「核心・変化・成功事例・懸念点・問い」の5つの視点で読み解き、要約・タイトル・テーマを整理します。</p>
-
  
-
+ 
+ 
   <div class="settings-panel">
-
+ 
     <div class="settings-head" onclick="this.nextElementSibling.classList.toggle('open')">🔗 連携設定（クリックで開閉）</div>
-
+ 
     <div class="settings-body">
-
+ 
       <div class="settings-row">
-
+ 
         <input type="text" id="gasUrlInput" placeholder="">
-
+ 
         <button onclick="saveGasUrl()">保存</button>
-
+ 
       </div>
-
+ 
       <div class="settings-status" id="gasUrlStatus">未設定：AI分析・スプレッドシート記録のどちらも動作しません。</div>
-
+ 
       <div class="settings-status" style="margin-top:4px;">※ここでの保存はこのブラウザだけの一時確認用です。全員が使えるようにするには、コード内の<code>GAS_URL_DEFAULT</code>に直接URLを貼り付けて公開してください。</div>
-
+ 
       <div class="settings-status" style="margin-top:4px;">※Groq APIキーはブラウザ側には保存せず、Apps Scriptの「スクリプト プロパティ」（GROQ_API_KEY）に安全に格納されます。</div>
-
-    </div>
-
-  </div>
-
  
-
+    </div>
+ 
+  </div>
+ 
+ 
+ 
   <div class="assist-layout">
-
+ 
     <div class="card" style="padding:16px;">
-
+ 
       <h2 style="margin-left:2px;">ノート</h2>
-
+ 
       <div class="author-row">
-
+ 
         <label>投稿者名（任意・スプレッドシートのL列に記録されます）</label>
-
+ 
         <input type="text" id="authorName" placeholder="例）山田太郎（未入力の場合は匿名）">
-
+ 
       </div>
-
+ 
       <div class="notepad">
-
+ 
         <textarea id="userInput" placeholder="例）こんな芦屋になればいいなぁ…"></textarea>
-
+ 
       </div>
-
+ 
       <div style="margin-top:14px;">
-
+ 
         <button class="big-btn" id="runBtn" onclick="runAI()">🔧 AIに相談する</button>
-
+ 
         <span id="loadingMsg" class="loading" style="display:none;margin-left:10px;">分析中…</span>
-
+ 
       </div>
-
-    </div>
-
  
-
+    </div>
+ 
+ 
+ 
     <div class="card" style="padding:16px;">
-
+ 
       <h2 style="margin-left:2px;">整理結果</h2>
-
+ 
       <div class="report-slip" id="slip"><p class="slip-empty">ここに整理結果が表示されます。</p></div>
-
+ 
     </div>
-
-  </div>
-
-</section>
-
  
-
+  </div>
+ 
+</section>
+ 
+ 
+ 
 <!-- ================= VOICE BOARD ================= -->
-
-<section id="tree" class="page">
-
-  <div class="cork-intro">
-
-    <h2>📌 声のボード</h2>
-
-    <p>大分類 → 中分類 → 記事タイトル → 記事内容の順にクリックして開きます。似たテーマの提案は自動的に統合されます。</p>
-
-  </div>
-
-  <div id="corkGrid" class="cork-grid"></div>
-
-  <div id="detailPanel" class="detail-panel"></div>
-
-</section>
-
  
-
+<section id="tree" class="page">
+ 
+  <div class="cork-intro">
+ 
+    <h2>📌 声のボード</h2>
+ 
+    <p>大分類 → 中分類 → 記事タイトル → 記事内容の順にクリックして開きます。似たテーマの提案は自動的に統合されます。</p>
+ 
+  </div>
+ 
+  <div id="corkGrid" class="cork-grid"></div>
+ 
+  <div id="detailPanel" class="detail-panel"></div>
+ 
+</section>
+ 
+ 
+ 
 </main>
 <script>
 /* ===================== 連携設定 ===================== */
@@ -592,31 +599,31 @@ const AI_BASE_SUMMARY = {
 };
  
 /* 最初の模擬投稿（新統合）。中分類はラベル文字列で直接指定。 */
-const POPULATION_STRATEGY = [
+const SEED_IDEAS = [
   // BIG-1: 斬新・未来【未来型定住戦略・イノベーション】
   { big: "BIG-1", mid: "スタートアップ・リモート拠点創出", title: "若き才能を惹きつける産業の実験場を", summary: "単なる商業開発ではなく、駅前にスタートアップ支援拠点やシェアオフィスを配置。若者が「挑戦の場」として芦屋を選び、新しい産業を生み出す環境を創る。" },
   { big: "BIG-1", mid: "デジタルノマドが選ぶスマート居住区", title: "環境とデジタルが融合する次世代の生活圏", summary: "脱炭素・エネルギー自立を駅前で実現し、先端技術と自然が調和する居住区を構築。国内外の知的生産性の高い人々が「住みたい」と熱望する街へ。" },
   { big: "BIG-1", mid: "次世代型モビリティによる都市再接続", title: "安全で快適な未来の移動インフラ", summary: "JR芦屋駅周辺を車歩分離し、自動運転や次世代モビリティが調和する動線を整備。あらゆる世代がストレスなく移動できることが街の競争力に直結する。" },
   { big: "BIG-1", mid: "無形資産の経済価値化", title: "文化を核とした国際的な交流拠点化", summary: "図書館やアートスペースを学びと交流の拠点へ進化させ、文化と知性が共鳴する街に。ここでの体験が、国内外から人を呼び込む最大の磁力となる。" },
-
+ 
   // BIG-2: 斬新・未来【ライフステージ・デザイン】
   { big: "BIG-2", mid: "探究型次世代教育とグローバル人材育成", title: "子どもと若者の未来への先行投資", summary: "駅前に学びと遊びの集約拠点を整備。子どもが創造性を育み、若者が自習や創作に没頭できる環境を都市の中核に据え、次世代を育てる街の姿勢を示す。" },
   { big: "BIG-2", mid: "ライフステージに合わせた居住循環支援", title: "子育て世代を支える駅前集約拠点", summary: "通勤動線上に保育・相談機能を集約し、子育ての負担を徹底的に軽減。家族に優しい設計こそが、若い世代の定住を促す最強のインセンティブ。" },
   { big: "BIG-2", mid: "多世代が学び合うオープンキャンパス化", title: "生涯を通じて学び続けられる環境", summary: "多世代共生型の図書館やコミュニティスペースを拡充。高齢者の経験と若者の感性が混ざり合う、学びのプラットフォームを構築する。" },
   { big: "BIG-2", mid: "結婚・出産・育児のポジティブ・デザイン", title: "誰もが安心して暮らし、次代を育む街へ", summary: "ユニバーサルデザインを徹底した家族に優しい空間設計により、子育て世代が疎外感を感じない、幸福度の高い都市環境を担保する。" },
-
+ 
   // BIG-3: 斬新・未来【邸宅ブランド・アーバニズム】
   { big: "BIG-3", mid: "都市の強靭化と洗練された景観保全", title: "品格を守る適正規模の住宅政策", summary: "高層化や画一的な開発を避け、低層・木質化によるヒューマンスケールな景観を維持。芦屋独自の美意識を次代へ繋ぎ、ブランド価値を永続させる。" },
   { big: "BIG-3", mid: "邸宅地と高密度エリアの適正な融合", title: "緑と水を軸にした駅前再開発", summary: "芝生広場や木陰など、緑と水の景観を駅前に配置。六甲の自然と邸宅地を繋ぐ緑の軸が、街の品格と資産価値を決定づける。" },
   { big: "BIG-3", mid: "歴史と最新技術が調和する都市デザイン", title: "気候変動に強い緑化された駅前を", summary: "駅前を脱炭素・防災のモデル地区として整備。環境への配慮を美しいランドスケープとして実装し、先進的な都市環境を世界に示す。" },
   { big: "BIG-3", mid: "自然資源を都市の競争力へ変換する", title: "六甲・芦屋川と繋がるエコロジカルネットワーク", summary: "自然環境を都市の機能と直結させ、歩いて健康になれる空間を創出。自然と共生するライフスタイルそのものを街の魅力として発信する。" },
-
+ 
   // BIG-4: モデレート【持続可能な都市経営】
   { big: "BIG-4", mid: "公共インフラの最適化と長寿命化", title: "効率と透明性を高める行政運営", summary: "再開発等のプロセスをDXで見える化し、市民の信頼を確保。コストと効果を厳密に見極め、市民参加型の持続可能なまちづくりを推進する。" },
   { big: "BIG-4", mid: "住民ニーズに基づいた行政サービスの精査", title: "共創型まちづくりへの転換", summary: "市民との共同創造により、本当に必要なサービスを選別。時代に合わせた柔軟な運営で、行政サービスの質と効率を両立させる。" },
   { big: "BIG-4", mid: "地域コミュニティの継承と緩やかな統合", title: "気軽に集まれる拠点の整備", summary: "市民が日常的に集える多目的スペースを配置し、地域活動を活性化。支え合いのコミュニティが行政の負担を適正化し、街の活力を維持する。" },
   { big: "BIG-4", mid: "環境負荷を抑えた堅実な都市環境管理", title: "循環型社会の推進とごみ削減", summary: "環境配慮型素材の活用や資源循環を駅前から実践。持続可能な都市経営の基礎として、堅実な環境負荷低減を図る。" },
-
+ 
   // BIG-5: 悲観的・リスク管理【縮小適応とリスク・マネジメント】
   { big: "BIG-5", mid: "都市機能の集約（コンパクトシティの極限）", title: "縮小社会における優先順位付け", summary: "人口減を見据え、公共サービスや機能を駅周辺へ集約。広がりすぎたインフラを再編し、維持可能な都市形態へ意図的に調整する。" },
   { big: "BIG-5", mid: "公共サービスの断捨離と優先順位付け", title: "未来を守るための行政の選択と集中", summary: "全方位的な支援から、将来の街の根幹を支える分野へリソースを集中。持続不可能なサービスを整理し、財政の健全性を守り抜く。" },
@@ -1130,8 +1137,8 @@ function escapeHtml(str){
   await loadIdeas();
   renderMapUpdate();
 })();
-
-
+ 
+ 
 </script>
 </body>
 </html>
