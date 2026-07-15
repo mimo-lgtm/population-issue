@@ -369,6 +369,11 @@ textarea:focus{outline:none;}
  
 @media(max-width:560px){.cork-grid{grid-template-columns:1fr 1fr;}}
  
+ @media(max-width:640px){
+  .persp-grid{grid-template-columns:1fr !important;}
+  .persp-box{grid-column:auto !important;padding:10px 12px !important;}
+  .persp-box .pv{font-size:13px !important;}
+}
 </style>
  
 </head>
@@ -553,6 +558,7 @@ textarea:focus{outline:none;}
       <div class="notepad">
  
         <textarea id="userInput" placeholder="例）こんな芦屋になればいいなぁ…"></textarea>
+       <button type="button" id="micBtn" class="big-btn ghost" style="margin-top:8px;" onclick="toggleMic()">🎤 音声で入力する</button>
  
       </div>
  
@@ -1177,7 +1183,40 @@ function escapeHtml(str){
   renderMapUpdate();
 })();
  
- 
+/* ▼音声入力機能（追加） */
+let micRecognition = null;
+let micActive = false;
+function toggleMic(){
+  const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognitionCtor){
+    alert('お使いのブラウザは音声入力に対応していません（Google Chromeでお試しください）。');
+    return;
+  }
+  const btn = document.getElementById('micBtn');
+  if(micActive){
+    if(micRecognition) micRecognition.stop();
+    return;
+  }
+  micRecognition = new SpeechRecognitionCtor();
+  micRecognition.lang = 'ja-JP';
+  micRecognition.continuous = true;
+  micRecognition.interimResults = false;
+  micRecognition.onstart = () => { micActive = true; if(btn) btn.textContent = '⏹ 音声入力を停止'; };
+  micRecognition.onend = () => { micActive = false; if(btn) btn.textContent = '🎤 音声で入力する'; };
+  micRecognition.onerror = (e) => { console.error('mic error', e); micActive = false; if(btn) btn.textContent = '🎤 音声で入力する'; };
+  micRecognition.onresult = (event) => {
+    let finalText = '';
+    for(let i = event.resultIndex; i < event.results.length; i++){
+      if(event.results[i].isFinal){ finalText += event.results[i][0].transcript; }
+    }
+    if(finalText){
+      const ta = document.getElementById('userInput');
+      if(ta){ ta.value = (ta.value ? ta.value + ' ' : '') + finalText; }
+    }
+  };
+  micRecognition.start();
+}
+/* ▲音声入力機能ここまで */ 
 </script>
 </body>
 </html>
