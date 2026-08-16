@@ -794,15 +794,21 @@ function ideasForSub(bigKey, sub){
 }
  
 /* ===================== AI CALL (Apps Script経由 → Groq/Llama) ===================== */
-async function callGroq(systemPrompt, userText, wantJson){
-  if(!gasUrl){ throw new Error('連携設定でGoogle Apps ScriptのURLを保存してください（AI分析はこのURL経由で実行されます）。'); }
-  const response = await fetch(gasUrl, {
+async function callGroq(systemPrompt, userText, wantJson=false){
+  const url = document.getElementById('gasUrl')?.value || GAS_URL_DEFAULT;
+  const res = await fetch(url, {
     method:'POST',
-    headers:{'Content-Type':'text/plain;charset=utf-8'}, // Apps Script側でのCORSプリフライト回避
-    body: JSON.stringify({ action:'groqProxy', systemPrompt, userText, wantJson: !!wantJson })
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify({
+      action:'geminiProxy',
+      systemPrompt: systemPrompt,
+      userText: userText,
+      wantJson: wantJson
+    })
   });
-  const data = await response.json();
-  if(!data.ok){ throw new Error(data.error || 'AI呼び出しに失敗しました。'); }
+  const data = await res.json();
+  if(!data.ok) throw new Error(data.error || 'GAS error');
+  // Interactions APIは content に入っている
   return data.content;
 }
 async function sheetPost(payload){
